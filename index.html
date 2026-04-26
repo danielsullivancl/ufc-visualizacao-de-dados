@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Visualização de Dados - UFC</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+
+  <h1>Visualização de Dados - UFC</h1>
+
+  <h2>Exercício 1</h2>
+  <div id="grafico1"></div>
+
+  <h2>Exercício 2</h2>
+  <div id="grafico2"></div>
+
+  <script>
+    const grafico1 = {
+      data: { url: "life_style_data.csv" },
+      mark: "bar",
+      encoding: {
+        x: { field: "Workout_Type", type: "nominal", sort: "-y" },
+        y: { aggregate: "mean", field: "Calories_Burned", type: "quantitative" },
+        color: { value: "steelblue" }
+      }
+    };
+
+    const grafico2 = {
+      data: { url: "life_style_data.csv" },
+      mark: { type: "circle", opacity: 0.3 },
+      encoding: {
+        x: { field: "BMI", type: "quantitative" },
+        y: { field: "Calories_Burned", type: "quantitative" },
+        column: { field: "Gender", type: "nominal" }
+      }
+    };
+
+    vegaEmbed("#grafico1", grafico1);
+    vegaEmbed("#grafico2", grafico2);
+  </script>
+
+</body>
+</html>
